@@ -48,15 +48,33 @@ public class Rocket : MonoBehaviour
         float rotateSpeed = rotationSpeed * Time.deltaTime;
         rigidBody.freezeRotation = true;
 
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             transform.Rotate(Vector3.forward * rotateSpeed);
         }
-        else if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             transform.Rotate(Vector3.back * rotateSpeed);
         }
 
         rigidBody.freezeRotation = false;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        switch (collision.gameObject.tag)
+        {
+            case "Friendly":
+                print("OK!");
+                break;
+
+            case "Battary":
+                print("Get energy");
+                break;
+
+            default:
+                print("Game over");
+                break;
+        }
     }
 }
