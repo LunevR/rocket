@@ -7,12 +7,18 @@ public class Rocket : MonoBehaviour
     Rigidbody rigidBody;
     AudioSource audioSource;
 
+    enum State {Play, Dead, NextLevel};
+
+    State state = State.Play;
+
     [SerializeField] float rotationSpeed = 100f;
     [SerializeField] float flySpeed = 100f;
 
     // Start is called before the first frame update
     void Start()
     {
+        state = State.Play;
+
         rigidBody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
     }
@@ -20,8 +26,11 @@ public class Rocket : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Launch();
-        Rotate();
+        if (state == State.Play)
+        {
+            Launch();
+            Rotate();
+        }
     }
 
     void Launch()
@@ -61,6 +70,11 @@ public class Rocket : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (state != State.Play)
+        {
+            return;
+        }
+
         switch (collision.gameObject.tag)
         {
             case "Friendly":
@@ -72,12 +86,25 @@ public class Rocket : MonoBehaviour
                 break;
 
             case "Finish":
-                SceneManager.LoadScene(1);
+                state = State.NextLevel;
+                Invoke("LoadNextLevel", 2f);
                 break;
 
             default:
-                SceneManager.LoadScene(0);
+                state = State.Dead;
+                audioSource.Stop();
+                Invoke("LoadFirstLevel", 2f);
                 break;
         }
+    }
+
+    void LoadNextLevel ()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    void LoadFirstLevel()
+    {
+        SceneManager.LoadScene(0);
     }
 }
