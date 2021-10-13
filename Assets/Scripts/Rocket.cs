@@ -71,8 +71,12 @@ public class Rocket : MonoBehaviour
                 print("Get energy");
                 break;
 
+            case "Finish":
+                SceneManager.LoadScene(1);
+                break;
+
             default:
-                print("Game over");
+                SceneManager.LoadScene(0);
                 break;
         }
     }
