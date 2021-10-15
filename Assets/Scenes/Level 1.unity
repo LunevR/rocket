@@ -725,14 +725,6 @@ PrefabInstance:
       propertyPath: energyText
       value: 
       objectReference: {fileID: 663495698}
-    - target: {fileID: 1166488069, guid: 1c1c42fbf913cc04aae5a31620cbfabb, type: 3}
-      propertyPath: energyApply
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 1166488069, guid: 1c1c42fbf913cc04aae5a31620cbfabb, type: 3}
-      propertyPath: energyTotal
-      value: 2000
-      objectReference: {fileID: 0}
     - target: {fileID: 4442858731709385735, guid: 1c1c42fbf913cc04aae5a31620cbfabb, type: 3}
       propertyPath: m_RootOrder
       value: 5

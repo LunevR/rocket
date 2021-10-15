@@ -450,6 +450,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd37a709ecb0b044d97dc94dfa98d5cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energyTotal: 2000
+  energyApply: 200
   rotationSpeed: 100
   flySpeed: 800
   flySound: {fileID: 8300000, guid: ccb92dbcc88d91b419ed4ac8a401ea20, type: 3}
@@ -458,6 +460,7 @@ MonoBehaviour:
   flyParticle: {fileID: 7670384317446987869}
   finishParticle: {fileID: 8126916533446815931}
   dethParticle: {fileID: 9019218407790768163}
+  energyText: {fileID: 0}
 --- !u!82 &2113090897062553361
 AudioSource:
   m_ObjectHideFlags: 0
