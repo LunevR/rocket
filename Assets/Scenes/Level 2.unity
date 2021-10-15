@@ -638,6 +638,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Finish
       objectReference: {fileID: 0}
+    - target: {fileID: 3754417666455959389, guid: 4532493a7791db5419238573594614b2, type: 3}
+      propertyPath: m_TagString
+      value: Finish
+      objectReference: {fileID: 0}
     - target: {fileID: 8466974776529138597, guid: 4532493a7791db5419238573594614b2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

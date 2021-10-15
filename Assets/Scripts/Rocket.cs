@@ -18,6 +18,10 @@ public class Rocket : MonoBehaviour
     [SerializeField] AudioClip finishSound;
     [SerializeField] AudioClip dethSound;
 
+    [SerializeField] ParticleSystem flyParticle;
+    [SerializeField] ParticleSystem finishParticle;
+    [SerializeField] ParticleSystem dethParticle;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,10 +48,12 @@ public class Rocket : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             audioSource.PlayOneShot(flySound);
+            flyParticle.Play();
         }
         else if (Input.GetKeyUp(KeyCode.Space))
         {
-            audioSource.Pause();
+            audioSource.Stop();
+            flyParticle.Stop();
         }
         else if (Input.GetKey(KeyCode.Space))
         {
@@ -90,17 +96,11 @@ public class Rocket : MonoBehaviour
                 break;
 
             case "Finish":
-                state = State.NextLevel;
-                audioSource.Stop();
-                audioSource.PlayOneShot(finishSound);
-                Invoke("LoadNextLevel", 2f);
+                Finish();
                 break;
 
             default:
-                state = State.Dead;
-                audioSource.Stop();
-                audioSource.PlayOneShot(dethSound);
-                Invoke("LoadFirstLevel", 2f);
+                Lose();
                 break;
         }
     }
@@ -113,5 +113,25 @@ public class Rocket : MonoBehaviour
     void LoadFirstLevel()
     {
         SceneManager.LoadScene(0);
+    }
+
+    void Finish()
+    {
+        state = State.NextLevel;
+        flyParticle.Stop();
+        finishParticle.Play();
+        audioSource.Stop();
+        audioSource.PlayOneShot(finishSound);
+        Invoke("LoadNextLevel", 2f);
+    }
+
+    void Lose()
+    {
+        state = State.Dead;
+        flyParticle.Stop();
+        dethParticle.Play();
+        audioSource.Stop();
+        audioSource.PlayOneShot(dethSound);
+        Invoke("LoadFirstLevel", 2f);
     }
 }
