@@ -22,6 +22,8 @@ public class Rocket : MonoBehaviour
     [SerializeField] ParticleSystem finishParticle;
     [SerializeField] ParticleSystem dethParticle;
 
+    bool collisionOff = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +40,23 @@ public class Rocket : MonoBehaviour
         {
             Launch();
             Rotate();
+        }
+
+        if (Debug.isDebugBuild)
+        {
+            DebugKeys();
+        }
+    }
+
+    void DebugKeys()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            LoadNextLevel();
+        }
+        else if (Input.GetKeyDown(KeyCode.C))
+        {
+            collisionOff = !collisionOff;
         }
     }
 
@@ -80,7 +99,7 @@ public class Rocket : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (state != State.Play)
+        if (state != State.Play || collisionOff)
         {
             return;
         }
