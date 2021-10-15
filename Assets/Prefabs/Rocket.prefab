@@ -355,6 +355,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 100
   flySpeed: 800
+  flySound: {fileID: 8300000, guid: ccb92dbcc88d91b419ed4ac8a401ea20, type: 3}
+  finishSound: {fileID: 8300000, guid: e9fae787033575a4cbe6365b34ba1e5b, type: 3}
+  dethSound: {fileID: 8300000, guid: b20b1a5dd0459bd4296dff74421a4ca3, type: 3}
 --- !u!82 &2113090897062553361
 AudioSource:
   m_ObjectHideFlags: 0
@@ -365,7 +368,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: cddab1980232e03449ae121ee0a507a1, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

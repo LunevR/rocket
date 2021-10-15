@@ -14,6 +14,10 @@ public class Rocket : MonoBehaviour
     [SerializeField] float rotationSpeed = 100f;
     [SerializeField] float flySpeed = 100f;
 
+    [SerializeField] AudioClip flySound;
+    [SerializeField] AudioClip finishSound;
+    [SerializeField] AudioClip dethSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +43,7 @@ public class Rocket : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            audioSource.Play();
+            audioSource.PlayOneShot(flySound);
         }
         else if (Input.GetKeyUp(KeyCode.Space))
         {
@@ -87,12 +91,15 @@ public class Rocket : MonoBehaviour
 
             case "Finish":
                 state = State.NextLevel;
+                audioSource.Stop();
+                audioSource.PlayOneShot(finishSound);
                 Invoke("LoadNextLevel", 2f);
                 break;
 
             default:
                 state = State.Dead;
                 audioSource.Stop();
+                audioSource.PlayOneShot(dethSound);
                 Invoke("LoadFirstLevel", 2f);
                 break;
         }
